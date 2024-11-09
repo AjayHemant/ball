@@ -1,0 +1,75 @@
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family: Arial, sans-serif;
+    background-color: #f0f8ff;
+}
+
+.game-container {
+    position: relative;
+    width: 400px;
+    height: 600px;
+    border: 3px solid #333;
+    background-color: #e0e0e0;
+    overflow: hidden;
+    margin-top: 20px;
+}
+
+#basket {
+    position: absolute;
+    bottom: 0;
+    left: 170px;
+    width: 60px;
+    height: 20px;
+    background-color: brown;
+    border-radius: 5px;
+}
+
+#falling-object {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 40px;
+    height: 40px;
+    background-image: url('ball.png'); /* Use the ball image */
+    background-size: cover;  /* Ensure the image fits the object */
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 50%; /* Optional: make it round if needed */
+}
+
+/* Styling the score to always be visible */
+#score {
+    position: fixed;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    background-color: #fff;
+    padding: 10px;
+    border: 2px solid #333;
+    border-radius: 8px;
+    z-index: 100;  /* Ensure it stays on top */
+}
+/* Restart button styling */
+#restart-btn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 18px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: block;
+}
+
+#restart-btn:hover {
+    background-color: #45a049;
+}
