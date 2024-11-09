@@ -17,7 +17,7 @@ let gameWidth = gameContainer.offsetWidth;
 let gameHeight = gameContainer.offsetHeight;
 let gameOver = false;
 
-// Moving the basket with arrow keys
+// Moving the basket with arrow keys or touch
 document.addEventListener('keydown', function (e) {
     if (!gameOver) {
         if (e.key === 'ArrowLeft' && basketPosition > 0) {
@@ -27,6 +27,30 @@ document.addEventListener('keydown', function (e) {
             basketPosition += 10;
             basket.style.left = basketPosition + 'px';
         }
+    }
+});
+
+// Mobile touch event listeners
+let touchStartX = 0;
+let touchEndX = 0;
+
+gameContainer.addEventListener('touchstart', function (e) {
+    touchStartX = e.touches[0].clientX;
+});
+
+gameContainer.addEventListener('touchmove', function (e) {
+    touchEndX = e.touches[0].clientX;
+});
+
+gameContainer.addEventListener('touchend', function () {
+    if (gameOver) return;
+
+    if (touchEndX < touchStartX && basketPosition > 0) {  // Swipe Left
+        basketPosition -= 10;
+        basket.style.left = basketPosition + 'px';
+    } else if (touchEndX > touchStartX && basketPosition < gameWidth - basket.offsetWidth) {  // Swipe Right
+        basketPosition += 10;
+        basket.style.left = basketPosition + 'px';
     }
 });
 
