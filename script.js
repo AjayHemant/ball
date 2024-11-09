@@ -34,24 +34,32 @@ document.addEventListener('keydown', function (e) {
 let touchStartX = 0;
 let touchEndX = 0;
 
+// For detecting drag or swipe to move the basket
 gameContainer.addEventListener('touchstart', function (e) {
     touchStartX = e.touches[0].clientX;
 });
 
 gameContainer.addEventListener('touchmove', function (e) {
     touchEndX = e.touches[0].clientX;
+    let diff = touchEndX - touchStartX;
+
+    // If swipe is detected, move the basket accordingly
+    if (Math.abs(diff) > 10) {
+        if (diff < 0 && basketPosition > 0) {  // Swipe Left
+            basketPosition -= 10;
+            basket.style.left = basketPosition + 'px';
+        } else if (diff > 0 && basketPosition < gameWidth - basket.offsetWidth) {  // Swipe Right
+            basketPosition += 10;
+            basket.style.left = basketPosition + 'px';
+        }
+        touchStartX = touchEndX;  // Reset touch start position for smooth dragging
+    }
 });
 
 gameContainer.addEventListener('touchend', function () {
-    if (gameOver) return;
-
-    if (touchEndX < touchStartX && basketPosition > 0) {  // Swipe Left
-        basketPosition -= 10;
-        basket.style.left = basketPosition + 'px';
-    } else if (touchEndX > touchStartX && basketPosition < gameWidth - basket.offsetWidth) {  // Swipe Right
-        basketPosition += 10;
-        basket.style.left = basketPosition + 'px';
-    }
+    // After touch is finished, reset the position
+    touchStartX = 0;
+    touchEndX = 0;
 });
 
 // Falling object movement
