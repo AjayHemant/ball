@@ -21,10 +21,10 @@ let gameOver = false;
 document.addEventListener('keydown', function (e) {
     if (!gameOver) {
         if (e.key === 'ArrowLeft' && basketPosition > 0) {
-            basketPosition -= 50;
+            basketPosition -= 500;
             basket.style.left = basketPosition + 'px';
         } else if (e.key === 'ArrowRight' && basketPosition < gameWidth - basket.offsetWidth) {
-            basketPosition += 50;
+            basketPosition += 500;
             basket.style.left = basketPosition + 'px';
         }
     }
